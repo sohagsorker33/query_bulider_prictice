@@ -55,11 +55,28 @@ class HomeController extends Controller
 
  // cross join
 
-$result=DB::table('products')
+/* $result=DB::table('products')
 ->crossJoin('categories')
 ->crossJoin('brands')
+->get(); */
+
+//simple pagination
+// $result=DB::table('products')->simplePaginate(2);
+
+//custom pagination
+/*
+$result=DB::table('products')->paginate(
+ $parPage=2,
+ $columns=['*'],
+$pageName='items',
+); */
+
+$result =DB::table('products')
+->skip(2)
+->take(3)
 ->get();
-    return $result;
+
+return $result;
 
   }
 }
